@@ -16,13 +16,11 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private float _acceleration = 10.0f;
     [SerializeField] private float _deceleration = 10.0f;
-    
-    private static readonly int Walking = Animator.StringToHash("Walking");
 
-    void Start()
+    void Awake()
     {
-        _body = GetComponent<Rigidbody2D>();
         _sprite = GetComponent<SpriteRenderer>();
+        _body = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
     }
 
@@ -37,7 +35,7 @@ public class PlayerController : MonoBehaviour
         }
         
         
-        _anim.SetBool(Walking, _horizontal != 0 || _vertical != 0);
+        _anim.SetBool("Walking", _horizontal != 0 || _vertical != 0);
     }
 
     void FixedUpdate()
