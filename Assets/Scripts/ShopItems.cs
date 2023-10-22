@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +13,7 @@ public class ShopItems : Singleton<ShopItems>
 
     [SerializeField] private TextMeshProUGUI _itemName;
     [SerializeField] private TextMeshProUGUI _itemDescription;
+    [SerializeField] private TextMeshProUGUI _itemPrice;
 
     [HideInInspector] public int ItemIndex = 0;
     
@@ -49,13 +52,43 @@ public class ShopItems : Singleton<ShopItems>
     
     public void SetHandPosition(int index)
     {
+        if (_items.Count == 0)
+        {
+            Destroy(_hand);
+            return;
+        };
+        
         _hand.GetComponent<RectTransform>().SetParent(_generatedItems[index].transform);
         _hand.GetComponent<RectTransform>().anchoredPosition = new Vector2(20,100);
         
         _itemName.text = _items[index].ItemName;
         _itemDescription.text = _items[index].Description;
+        _itemPrice.text = _items[index].Price.ToString();
+        
+        foreach (var item in _items)
+        {
+            item.HoveredInShop = false;
+        }
+        
+        _items[index].HoveredInShop = true;
+        _hand.GetComponent<Image>().enabled = true;
     }
     
+    public void BuyItem()
+    {
+        if (_items.Count == 0) return;
+
+        if (_items.Any(item => item.HoveredInShop && GameManager.Instance.CurrentGold >= _items[ItemIndex].Price))
+        {
+            GameManager.Instance.Pay(_items[ItemIndex].Price);
+            //GameManager.Instance.PlayerInventory.Add(_items[ItemIndex]);
+            _items[ItemIndex].HoveredInShop = false;
+            _items.RemoveAt(ItemIndex);
+            GenerateItems();
+            SetHandPosition(0);
+        }
+    }
+
     public void NextItem()
     {
         ItemIndex++;

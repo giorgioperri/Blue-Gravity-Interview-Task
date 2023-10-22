@@ -17,7 +17,8 @@ public class Item : ScriptableObject
     public Sprite Icon;
     public ItemType itemType;
     public int ID;
-    
+    public int Price;
+
     private void OnValidate()
     {
         ItemName = name;

@@ -6,7 +6,7 @@ public class ShopController : MonoBehaviour
 {
     void Start()
     {
-        
+        //gameObject.SetActive(false);
     }
 
     void Update()
@@ -21,6 +21,11 @@ public class ShopController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             ShopItems.Instance.PreviousItem();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ShopItems.Instance.BuyItem();
         }
     }
 }
