@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Vase
   m_EditorClassIdentifier: 
   ItemName: Vase
+  HoveredInShop: 0
+  Description: If you drop it, everyone will be mad at you.
   Icon: {fileID: 2145008282, guid: efa9df4fc542844baaa7b09f947a0732, type: 3}
   itemType: 1
   ID: 2
-  HoveredInShop: 0

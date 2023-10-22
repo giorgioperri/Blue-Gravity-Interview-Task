@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,14 +9,16 @@ public class ShopItems : Singleton<ShopItems>
     [SerializeField] private List<Item> _items;
     [SerializeField] private RectTransform _hand;
 
-    private List<GameObject> _generatedItems = new List<GameObject>();
-    public int ItemIndex = 0;
-    public int ItemCount = 0;
+    [SerializeField] private TextMeshProUGUI _itemName;
+    [SerializeField] private TextMeshProUGUI _itemDescription;
+
+    [HideInInspector] public int ItemIndex = 0;
     
+    private List<GameObject> _generatedItems = new List<GameObject>();
+
     void OnEnable()
     {
         GenerateItems();
-        ItemCount = _items.Count;
     }
 
     void GenerateItems()
@@ -47,7 +50,10 @@ public class ShopItems : Singleton<ShopItems>
     public void SetHandPosition(int index)
     {
         _hand.GetComponent<RectTransform>().SetParent(_generatedItems[index].transform);
-        _hand.GetComponent<RectTransform>().anchoredPosition = new Vector2(20,80);
+        _hand.GetComponent<RectTransform>().anchoredPosition = new Vector2(20,100);
+        
+        _itemName.text = _items[index].ItemName;
+        _itemDescription.text = _items[index].Description;
     }
     
     public void NextItem()

@@ -11,17 +11,5 @@ public enum GameStates
 
 public class GameManager : PersistentSingleton<GameManager>
 {
-    public GameStates CurrentGameState = GameStates.Shop;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameStates CurrentGameState = GameStates.Gameplay;
 }

@@ -6,12 +6,16 @@ using UnityEngine;
 public class ShopKeeper : MonoBehaviour
 {
     [SerializeField] private Animator _bubbleAnim;
+    [SerializeField] private GameObject _shopUI;
+
+    private bool _canShop;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
             _bubbleAnim.SetBool("IsVisible", true);
+            _canShop = true;
         }
     }
 
@@ -20,17 +24,17 @@ public class ShopKeeper : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             _bubbleAnim.SetBool("IsVisible", false);
+            _canShop = false;
         }
     }
 
-    private void OnTriggerStay2D(Collider2D col)
+    private void Update()
     {
-        if (col.CompareTag("Player"))
+        if (Input.GetKeyDown(KeyCode.E) && _canShop)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("Open Shop");
-            }
+            GameManager.Instance.CurrentGameState = GameStates.Shop;
+            _shopUI.SetActive(true);
+            _bubbleAnim.SetBool("IsVisible", false);
         }
     }
 }

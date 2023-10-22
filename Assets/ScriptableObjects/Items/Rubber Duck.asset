@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Rubber Duck
   m_EditorClassIdentifier: 
   ItemName: Rubber Duck
+  HoveredInShop: 0
+  Description: Makes you "Quackable". When you are "Quackable", absolutely nothing
+    will happen.
   Icon: {fileID: -198276318, guid: efa9df4fc542844baaa7b09f947a0732, type: 3}
   itemType: 1
+  ID: 1
