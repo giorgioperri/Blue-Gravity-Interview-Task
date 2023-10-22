@@ -19,7 +19,7 @@ public class GameManager : PersistentSingleton<GameManager>
     
     [SerializeField] private TextMeshProUGUI _currentGoldText;
     public List<Item> PlayerInventory;
-    [SerializeField] private List<InventorySlot> _inventorySlots;
+    [SerializeField] public List<InventorySlot> InventorySlots;
 
     private void Start()
     {
@@ -36,13 +36,13 @@ public class GameManager : PersistentSingleton<GameManager>
     {
         PlayerInventory.Add(item);
 
-        foreach (var slot in _inventorySlots.Where(slot => slot.SlotType == SlotTypes.Equipped && slot.Item == null))
+        foreach (var slot in InventorySlots.Where(slot => slot.SlotType == SlotTypes.Equipped && slot.Item == null))
         {
             slot.SetItem(item);
             return;
         }
         
-        foreach (var slot in _inventorySlots.Where(slot => slot.SlotType == SlotTypes.Simple && slot.Item == null))
+        foreach (var slot in InventorySlots.Where(slot => slot.SlotType == SlotTypes.Simple && slot.Item == null))
         {
             slot.SetItem(item);
             return;

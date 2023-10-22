@@ -54,7 +54,7 @@ public class ShopItems : Singleton<ShopItems>
     {
         if (_items.Count == 0)
         {
-            Destroy(_hand);
+            _hand.gameObject.SetActive(false);
             return;
         };
         

@@ -49,9 +49,14 @@ public class PlayerController : Singleton<PlayerController>
         {
             _sprite.flipX = _horizontal < 0;
         }
-        
-        
+
         _anim.SetBool("Walking", _horizontal != 0 || _vertical != 0);
+        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            GameManager.Instance.CurrentGameState = GameStates.Inventory;
+            InventoryController.Instance.OpenInventory();
+        }
     }
 
     void FixedUpdate()
