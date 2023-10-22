@@ -22,4 +22,15 @@ public class ShopKeeper : MonoBehaviour
             _bubbleAnim.SetBool("IsVisible", false);
         }
     }
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("Open Shop");
+            }
+        }
+    }
 }
