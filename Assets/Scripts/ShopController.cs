@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopController : MonoBehaviour
+public class ShopController : Singleton<ShopController>
 {
-    void Start()
-    {
-        //gameObject.SetActive(false);
-    }
-
     void Update()
     {
         if (GameManager.Instance.CurrentGameState != GameStates.Shop) return;
@@ -27,5 +22,22 @@ public class ShopController : MonoBehaviour
         {
             ShopItems.Instance.BuyItem();
         }
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseShop();
+        }
+    }
+    
+    public void OpenShop()
+    {
+        GameManager.Instance.CurrentGameState = GameStates.Shop;
+        GetComponent<Animator>().SetTrigger("OpenShop");
+    }
+    
+    public void CloseShop()
+    {
+        GameManager.Instance.CurrentGameState = GameStates.Gameplay;
+        GetComponent<Animator>().SetTrigger("CloseShop");
     }
 }

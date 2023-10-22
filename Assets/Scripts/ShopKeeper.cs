@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopKeeper : MonoBehaviour
+public class ShopKeeper : Singleton<ShopKeeper>
 {
     [SerializeField] private Animator _bubbleAnim;
-    [SerializeField] private GameObject _shopUI;
 
     private bool _canShop;
 
@@ -33,8 +32,14 @@ public class ShopKeeper : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && _canShop)
         {
             GameManager.Instance.CurrentGameState = GameStates.Shop;
-            _shopUI.SetActive(true);
+            ShopController.Instance.OpenShop();
             _bubbleAnim.SetBool("IsVisible", false);
+            _canShop = false;
         }
+    }
+    
+    public void DisableShop()
+    {
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 }

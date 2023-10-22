@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     private Rigidbody2D _body;
     private SpriteRenderer _sprite;
@@ -17,8 +17,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _acceleration = 10.0f;
     [SerializeField] private float _deceleration = 10.0f;
 
+    public Item EquippedItem;
+    [SerializeField] private SpriteRenderer _itemSprite;
+    
     void Awake()
     {
+        base.Awake();
         _sprite = GetComponent<SpriteRenderer>();
         _body = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
@@ -28,7 +32,17 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.CurrentGameState != GameStates.Gameplay) return;
 
-            _horizontal = Input.GetAxisRaw("Horizontal");
+        if (EquippedItem != null)
+        {
+            _itemSprite.sprite = EquippedItem.Icon;
+            _itemSprite.color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            _itemSprite.color = new Color(1, 1, 1, 0);
+        }
+
+        _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
 
         if(_horizontal != 0 || _vertical != 0)

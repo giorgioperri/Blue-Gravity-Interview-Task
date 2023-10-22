@@ -84,6 +84,13 @@ public class ShopItems : Singleton<ShopItems>
             GameManager.Instance.AddToInventory(_items[ItemIndex]);
             _items[ItemIndex].HoveredInShop = false;
             _items.RemoveAt(ItemIndex);
+
+            if (_items.Count == 0)
+            {
+                ShopController.Instance.CloseShop();
+                ShopKeeper.Instance.DisableShop();
+            }
+            
             ItemIndex = 0;
             SetHandPosition(ItemIndex);
             GenerateItems();

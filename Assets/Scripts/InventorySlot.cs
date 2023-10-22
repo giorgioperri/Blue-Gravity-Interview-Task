@@ -27,5 +27,10 @@ public class InventorySlot : MonoBehaviour
         Item = item;
         _sprite.sprite = item.Icon;
         _sprite.color = new Color(1, 1, 1, 1);
+
+        if (SlotType == SlotTypes.Equipped)
+        {
+            PlayerController.Instance.EquippedItem = item;
+        }
     }
 }
