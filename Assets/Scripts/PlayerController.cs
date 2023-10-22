@@ -26,7 +26,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        _horizontal = Input.GetAxisRaw("Horizontal");
+        if (GameManager.Instance.CurrentGameState != GameStates.Gameplay) return;
+
+            _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
 
         if(_horizontal != 0 || _vertical != 0)
