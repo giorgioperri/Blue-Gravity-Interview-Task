@@ -41,8 +41,8 @@ public class ShopItems : Singleton<ShopItems>
 
             image.sprite = item.Icon;
             
-            currentItem.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
             currentItem.transform.SetParent(transform);
+            currentItem.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
             
             _generatedItems.Add(currentItem);
         }
