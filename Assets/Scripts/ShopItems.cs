@@ -81,11 +81,12 @@ public class ShopItems : Singleton<ShopItems>
         if (_items.Any(item => item.HoveredInShop && GameManager.Instance.CurrentGold >= _items[ItemIndex].Price))
         {
             GameManager.Instance.Pay(_items[ItemIndex].Price);
-            //GameManager.Instance.PlayerInventory.Add(_items[ItemIndex]);
+            GameManager.Instance.PlayerInventory.Add(_items[ItemIndex]);
             _items[ItemIndex].HoveredInShop = false;
             _items.RemoveAt(ItemIndex);
+            ItemIndex = 0;
+            SetHandPosition(ItemIndex);
             GenerateItems();
-            SetHandPosition(0);
         }
     }
 
