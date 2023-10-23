@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 582f92ac0bc334692ba42016c515ec7a, type: 3}
+  m_Script: {fileID: 11500000, guid: ddd769c5cc93d4a41a8d711440c44cf7, type: 3}
   m_Name: Vase
   m_EditorClassIdentifier: 
   ItemName: Vase
   HoveredInShop: 0
-  Description: If you drop it, everyone will be mad at you.
+  Description: If you drop it, everyone will hate you.
   Icon: {fileID: 2145008282, guid: efa9df4fc542844baaa7b09f947a0732, type: 3}
   itemType: 1
   ID: 2
-  Price: 15
+  Price: 18

@@ -19,8 +19,8 @@ public class PlayerController : Singleton<PlayerController>
 
     public Item EquippedItem;
     [SerializeField] private SpriteRenderer _itemSprite;
-    
-    void Awake()
+
+    new void Awake()
     {
         base.Awake();
         _sprite = GetComponent<SpriteRenderer>();

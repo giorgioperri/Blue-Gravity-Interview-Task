@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopItems : Singleton<ShopItems>
+public class Shop : Singleton<Shop>
 {
     [SerializeField] private List<Item> _items;
     [SerializeField] private RectTransform _hand;

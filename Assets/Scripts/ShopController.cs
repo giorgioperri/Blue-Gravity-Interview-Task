@@ -10,17 +10,17 @@ public class ShopController : Singleton<ShopController>
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            ShopItems.Instance.NextItem();
+            Shop.Instance.NextItem();
         }
         
         if (Input.GetKeyDown(KeyCode.A))
         {
-            ShopItems.Instance.PreviousItem();
+            Shop.Instance.PreviousItem();
         }
         
         if (Input.GetKeyDown(KeyCode.E))
         {
-            ShopItems.Instance.BuyItem();
+            Shop.Instance.BuyItem();
         }
         
         if (Input.GetKeyDown(KeyCode.Escape))
